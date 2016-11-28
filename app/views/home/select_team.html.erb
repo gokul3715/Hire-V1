@@ -1,0 +1,23 @@
+<h1>Send Invite</h1>
+
+<%= form_tag "/send_invite" do %>
+     <b> Company:</b>
+    <%=@company.name%>
+<br>
+  <div class="field">
+   <b> Select Team:</b>
+
+    <%=select_tag "team_id", options_for_select(@team.map do |f|
+      [f.name, f.id]
+      end)%>
+  </div>
+  <br>
+  <b>Enter Email IDs: </b>
+  <div class="field">
+  <%= text_area_tag "emaillist"%>
+  </div>
+  <div class="actions">
+     <%= submit_tag("Invite Now") %>
+  </div>
+
+  <%end%>

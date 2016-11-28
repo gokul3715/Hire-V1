@@ -1,0 +1,8 @@
+
+Hello <i><%= current_user.username%></i> <br>
+This is <%= current_user.role%> page
+<br>
+
+<%= link_to "Show candidates interviewed in my team",show_by_team_path%> <br>
+
+<%= render 'show_pending_completed'%>

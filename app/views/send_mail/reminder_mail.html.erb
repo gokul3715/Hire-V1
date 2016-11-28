@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    Hello <%=@interviewer_name%> <br><br>
+    
+    This is auto generated reminder mail for you to take up following interview schedule: <br><br>
+    <div>
+    <b>Candidate name: </b>
+    <%=@candidate_name%>
+    </div>
+
+    <div>
+    <b>Round: </b>
+    <%=@round%>
+    </div>
+
+    <div>
+    <b>Scheduled at: </b>
+    <%=@scheduled_at.strftime("%F %H:%M")%>
+    </div>
+    <br>
+
+Thanks,
+<%=@recruiter%>
+  </body>
+</html>

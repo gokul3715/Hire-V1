@@ -1,0 +1,5 @@
+
+<div><b>Round: </b><%= @invw.round%></div>
+<div><b>Interviewer: </b><%= getInterviewerName(@invw.interviewer_id)%> (<%=getInterviewerEmail(@invw.interviewer_id)%>)</div>
+<div><b>Scheduled on: </b><%=@invw.scheduled_at.strftime("%a - %d/%m/%y - %H:%M ")%></div>
+<%= render 'edit_form'%>

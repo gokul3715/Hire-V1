@@ -1,0 +1,18 @@
+<h1>Select Team</h1>
+
+<%= form_tag "/new_candidate" do %>
+<br>
+  <div class="field">
+   <b> Select Team:</b>
+    <%@team_list=Array[]%>
+
+    <%=select_tag "teamname", options_for_select(
+    @team.map do |f|
+      [f.name, f.id]
+      end)%>
+  </div>
+  <div class="actions">
+     <%= submit_tag("Submit") %>
+  </div>
+
+  <%end%>

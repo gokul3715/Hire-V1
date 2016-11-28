@@ -1,0 +1,7 @@
+
+Hello <i><%= current_user.username%></i><br>
+Welcome to the Hire Tool!
+This is <%= current_user.role%> page <br>
+Please see the below list of interviews scheduled under your name.<br><br>
+
+<%= render 'show_pending_completed'%>

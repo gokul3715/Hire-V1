@@ -1,0 +1,102 @@
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
+
+<center>
+<table class="table table-striped" style="width: auto !important">
+  <tr>
+    <th>Candidate Name:</th>
+    <td><%=@candidate.name%></td>
+  </tr>
+
+  <tr>
+    <th>Candidate Email id:</th>
+    <td><%=@candidate.email_%></td>
+  </tr>
+
+  <tr>
+    <th>Candidate Mobile Num:</th>
+    <td><%=@candidate.mobile%></td>
+  </tr>
+
+  <tr>
+    <th>Applied for Team:</th>
+    <td><%=getTeamName(@candidate.team_id)%></td>
+  </tr>
+
+  <tr>
+    <th>Resume:</th>
+    <td>
+    <%if @candidate.resume.nil?%>
+        No resume uploaded
+    <%else%>
+    <%= link_to "click here to download", candidate_path(format: "csv") %>
+    <%end%>
+    </td>
+  </tr>
+</table>
+</center>
+
+<% if @invw.empty? %>
+  No Interviews scheduled yet.
+<%else%>
+  <b>Previous Rounds:</b>
+  <table class="table table-striped">
+    <tr>
+      <th>Round:</th>
+      <th>Scheduled_at:</th>
+      <th>Interviewer:</th>
+      <th>Feedback:</th>
+      <th>Final vote:</th>
+    </tr>
+
+    <% @invw.each do |x|%>
+    <tr  class="flip">
+      <td><%= x.round %></td>
+      <td><%= x.scheduled_at.strftime("%a - %d/%m/%y - %H:%M ") %></td>
+      <td> <%=getInterviewerName(x.interviewer_id)%> (<%=getInterviewerEmail(x.interviewer_id)%>)</td>
+      <td>
+        <% if x.feedback.nil? %>
+          Yet to enter feedback.<br>
+        <%else%>
+          View Feedback
+        <%end%>
+      </td>
+      <td>
+        <% if x.vote.nil? %>
+          Yet to enter final vote.
+        <%else%>
+          <% if x.vote == "Selected"%>
+            <span class="label label-success"><%=x.vote%></span>
+          <%else%>
+            <span class="label label-danger"><%=x.vote%></span>
+          <%end%>
+        <%end%>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="5" class="panel" style="display:none">
+        <b>Feedback: </b><%=x.feedback%>
+      </td>
+    </tr>
+    <%end%>
+  </table>
+<%end%>
+
+<center>
+  <% if @remaining_rounds.empty? %>
+    <%if @nil_vote%>
+      Interviewers yet to enter feedback & Vote!
+    <%else%>
+      Candidate got <%=@final_result%>!
+    <%end%>
+  <%else%>
+    <% if current_user.role == "recruiter" %>
+    <%= link_to "Schedule Interview for this Candidate", new_candidate_interview_path(@candidate) %>
+    <%end%>
+  <%end%>
+  <br>
+  <!--<%= link_to "Show All Candidates", show_all_candidates_path %>-->
+</center>
+<br><br>

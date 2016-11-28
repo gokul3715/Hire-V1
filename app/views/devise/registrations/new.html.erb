@@ -1,0 +1,60 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :username %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+  <br>
+
+  <div class="field">
+    <%= f.label :team_name %>
+    <% if params[:team].nil?%>
+    <%@company = Company.find(params[:company_id])%>
+    <%@team = @company.teams%>
+    <br>
+    <%= f.select :team_id, options_for_select(@team.map do |f|
+      [f.name, f.id]
+      end) %>
+    <%else%>
+    <%@team = Team.find(params[:team])%>
+    : <%=@team.name%>
+    <%=f.hidden_field :team_id, :value => params[:team] %>
+    <%end%>
+  </div>
+
+  <div class="field">
+    <%= f.label :role %> <br>
+    <% if params[:team].nil?%>
+    <%= f.select :role, options_for_select([["Recruiter","Recruiter"]]) %>
+    <%else%>
+    <%= f.select :role, options_for_select([["Developer","Developer"],["Manager","Manager"],["Tester","Tester"]]) %>
+    <%end%>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>

@@ -1,0 +1,18 @@
+
+<div class="container">
+
+<% flash.each do |message_type, message| %>
+  <div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
+
+Hello <i><%= current_user.username%></i> <br>
+Welcome to the Hire Tool! <br>
+This is <%= current_user.role%> page. <br>
+<p>Here, you can register new candidates, contact interviewers, schedule interviews & track their feedback.</p>
+<br>
+<h4>
+<div><%= link_to "Configure for my team", new_company_team_path(@company.id) %></div><br>
+<div><%= link_to "Invite people", select_team_path%></div><br>
+<div><%= link_to "Interview corner", interview_corner_path%></div>
+</h4>
+</div>

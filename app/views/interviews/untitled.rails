@@ -1,0 +1,18 @@
+
+<!-- List of interviews -->
+<% rounds=["PS & Coding","Algorithm","Designing","Manager discussion","HR discussion"] %>
+
+<!-- List of completed rounds -->
+<% completed_rounds = Array[]%>
+<%@invw_info.each do |x| %>
+<% completed_rounds.push(x.round)%>
+<%end%>
+
+<!-- Compare and calculate remaining rounds -->
+<% rounds.each do |x| %>
+  <% completed_rounds.each do |y|%>
+      <% if y == x %>
+        <%rounds.delete(y)%>
+      <%end%>
+    <%end%>
+<%end%>

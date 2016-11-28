@@ -1,0 +1,7 @@
+List all the emails you want to invite
+
+<%= params[:teamname]%>
+<% @emaillist = params[:emaillist].split(/,/)%><br>
+<%@emaillist.each do |x|%>
+<%=x%><br>
+<%end%>

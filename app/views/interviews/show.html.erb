@@ -1,0 +1,31 @@
+<h3>Feedback:</h3>
+
+<div>
+  <b>Candidate:</b>
+  <%=@candidate.name%>
+</div>
+
+<div>
+  <b>Round:</b>
+  <%=@invw.round%>
+</div>
+
+<div> 
+  <b>Interviewer:</b>
+  <%=getInterviewerName(@invw.interviewer_id)%> (<%=getInterviewerEmail(@invw.interviewer_id)%>)
+</div>
+
+<div>
+  <b>Feedback:</b>
+  <%=@invw.feedback%>
+</div>
+
+<div>
+  <b>Vote:</b>
+    <%if @invw.vote.eql? "Selected"%>
+      <span class="label label-success"><%=@invw.vote%></span>
+    <%else%>
+      <span class="label label-danger"><%=@invw.vote%></span>
+    <%end%>
+</div>
+

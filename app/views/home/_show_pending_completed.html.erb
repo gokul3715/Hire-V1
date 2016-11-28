@@ -1,0 +1,64 @@
+<% if not @pending_interview.empty? %>
+<div>
+<b>Pending Interviews:</b>
+<table class="table table-striped">
+  <tr>
+	<th>Round</th>
+	<th>Interviewer</th>
+	<th>Candidate ID</th>
+	<th>Candidate Name</th>
+	<th></th>
+  </tr>
+
+  <% @pending_interview.each do |x|%>
+  <tr>
+	<td><%=x.round%></td>
+	<td><%=current_user.username%> (<%=getInterviewerEmail(x.interviewer_id)%>)</td>
+	<td><%= x.candidate_id%></td>
+
+	<% @candidate = Candidate.where("id=?",x.candidate_id)%>
+	<% @candidate.each do |y|%>
+		<td><%=y.name%></td>
+		<td><%= link_to "enter feedback", edit_candidate_interview_path(y, x)%></td>
+	<%end%>
+  </tr>
+  <%end%>
+</table>
+<%=will_paginate @pending_interview, :param_name => 'page1' %><br>
+</div>
+<%else%>
+Currently there are no pending interviews under your name.
+<%end%>
+
+<% if not @completed_interview.empty? %>
+<div>
+<b>Completed Interviews:</b>
+<table class="table table-striped">
+  <tr>
+	<th>Round</th>
+	<th>Interviewer</th>
+	<th>Candidate ID</th>
+	<th>Candidate Name</th>
+	<th></th>
+  </tr>
+
+  <% @completed_interview.each do |x|%>
+  <tr>
+	<td><%=x.round%></td>
+	<td><%=current_user.username%> (<%=getInterviewerEmail(x.interviewer_id)%>)</td>
+	<td><%= x.candidate_id%></td>
+
+	<% @candidate = Candidate.where("id=?",x.candidate_id)%>
+	<% @candidate.each do |y|%>
+		<td><%=y.name%></td>
+		<td><%= link_to "View", candidate_interview_path(y, x)%></td>
+	<%end%>
+  </tr>
+  <%end%>
+</table>
+<%=will_paginate @completed_interview, :param_name => 'page2'%>
+</div>
+<%else%>
+There are no completed interview records.
+<%end%>
+<br><br>

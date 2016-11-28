@@ -1,0 +1,98 @@
+<b>New Entries:</b><br>
+<% if not @new_entry.empty? %>
+<table class="table table-striped" >
+<thead>
+<tr>
+<th>Name</th>
+<th>Role</th>
+<th>Team</th>
+<th>Email</th>
+<th>mobile</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<% @new_entry.each do |x| %>
+<tr><td><%=x.name%></td>
+<td><%=x.role%></td>
+<td><%=getTeamName(x.team_id)%></td>
+<td><%=x.email_%></td>
+<td><%=x.mobile%></td>
+<td><%=link_to "view", candidate_path(x)%></td>
+<td><%= link_to "edit", edit_candidate_path(x)%></td>
+<td><%= link_to "delete", x, method: :delete, data: {confirm: "You sure to delete this candidate info?" }%></td>
+<%end%>
+</tbody>
+</table>
+<%= will_paginate @new_entry, :param_name => 'new_entry'%><br>
+<%else%>
+No New Candidates list are present.<br>
+<%end%>
+
+<b>Candidate's in-process:</b><br>
+<% if not @on_the_go.empty? %>
+<table class="table table-striped" >
+<thead>
+<tr>
+<th>Name</th>
+<th>Role</th>
+<th>Team</th>
+<th>Email</th>
+<th>mobile</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<% @on_the_go.each do |x| %>
+<tr><td><%=x.name%></td>
+<td><%=x.role%></td>
+<td><%=getTeamName(x.team_id)%></td>
+<td><%=x.email_%></td>
+<td><%=x.mobile%></td>
+<td><%=link_to "view", candidate_path(x)%></td>
+<td><%= link_to "edit", edit_candidate_path(x)%></td>
+<td><%= link_to "delete", x, method: :delete, data: {confirm: "You sure to delete this candidate info?" }%></td>
+<%end%>
+</tbody>
+</table>
+<%= will_paginate @on_the_go, :param_name => 'on_the_go'%><br>
+<%else%>
+No candidates are currently processed. <br>
+<%end%>
+
+<b>Candidates - process completed:</b><br>
+<% if not @completed.empty? %>
+<table class="table table-striped" >
+<thead>
+<tr>
+<th>Name</th>
+<th>Role</th>
+<th>Team</th>
+<th>Email</th>
+<th>mobile</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<% @completed.each do |x| %>
+<tr><td><%=x.name%></td>
+<td><%=x.role%></td>
+<td><%=getTeamName(x.team_id)%></td>
+<td><%=x.email_%></td>
+<td><%=x.mobile%></td>
+<td><%=link_to "view", candidate_path(x)%></td>
+<td><%= link_to "edit", edit_candidate_path(x)%></td>
+<td><%= link_to "delete", x, method: :delete, data: {confirm: "You sure to delete this candidate info?" }%></td>
+<%end%>
+</tbody>
+</table>
+<%= will_paginate @completed, :param_name => 'completed'%>
+<%else%>
+No Candidates record found.<br>
+<%end%>

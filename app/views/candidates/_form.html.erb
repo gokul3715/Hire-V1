@@ -1,0 +1,40 @@
+<%= form_for @candidate, :html => { :multipart => true } do |f| %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email_, autofocus: true %>
+  </div>
+
+    <div class="field">
+    <%= f.label :mobile %><br />  
+    <%= f.telephone_field :mobile %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :team_id %>
+    : <%=@team.name%>
+    <%= f.hidden_field :team_id, value: @team.id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role %><br />  
+    <%= f.select :role, options_for_select([["Product Developer","Product Developer"],["SDET","SDET"],["Pre-Sales","Pre-Sales"],["Sales Executive","Sales Engineer"],["Designer","Designer"],["Manager","Manager"]])%>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :resume %><br />  
+    <%= f.file_field :resume %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<%end%>
+
+<br><br>

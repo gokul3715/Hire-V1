@@ -1,0 +1,5 @@
+<div><b>Candidate:</b> <%=@candidate.name%></div>
+<div><b>Role:</b> <%= @candidate.role%></div>
+<div><b>Team:</b> <%=getTeamName(@candidate.team_id)%></div>
+<br>
+<%= render 'form'%>

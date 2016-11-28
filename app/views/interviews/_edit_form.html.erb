@@ -1,0 +1,34 @@
+
+
+<%= form_for([@candidate,@interview], :method => :put, :url => candidate_interview_path(@interview.candidate)) do |f| %>
+ <!-- <div class="field">
+    <%= f.label :round %><br />
+    <%= f.text_field :round%>
+  </div>
+
+  <div class="field">
+    <%= f.label :interviewer %><br />
+    <%= f.email_field :interviewer, autofocus: true %>
+  </div>
+
+    <div class="field">
+    <%= f.label :schedled_at %><br />  
+    <%= Time.use_zone("Chennai") do
+    f.datetime_select :scheduled_at
+  end %> 
+  </div> -->
+
+  <div class="field">
+    <%= f.label :feedback %><br />
+    <%= f.text_area :feedback %>
+  </div>
+
+  <div class="field">
+    <%= f.label :vote %><br />  
+    <%= f.select :vote, options_for_select([["Selected","Selected"],["Rejected","Rejected"]]) %>
+  </div> 
+<br/>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<%end%>

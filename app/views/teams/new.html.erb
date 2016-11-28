@@ -1,0 +1,15 @@
+<%= form_for([@team.company,@team]) do |f|%>
+
+<div class="field">
+<b>Company :</b> <%=@team.company.name%>
+</div>
+
+    <div class="field">
+    <%= f.label :Enter_team_name %> :
+    <%= f.text_field :name%>
+  </div>
+<br/>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<%end%>

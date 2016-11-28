@@ -1,0 +1,24 @@
+--- !ruby/object:ActionDispatch::Http::UploadedFile
+original_filename: show_priority_tasks.csv
+content_type: text/csv
+headers: "Content-Disposition: form-data; name=\"candidate[resume]\"; filename=\"show_priority_tasks.csv\"\r\nContent-Type:
+  text/csv\r\n"
+tempfile: !ruby/marshalable:Tempfile
+  :__v2__:
+  - :@data
+  - :@clean_proc
+  - :@tmpfile
+  - :@tmpname
+  - :@mode
+  - :@opts
+  ? - &1
+      - "/var/folders/tv/29p0ndzn2q96fvbc_5w89sf40000gp/T/RackMultipart20161101-5009-qwrmsd"
+      - &2 !ruby/object:File {}
+    - !ruby/object:Tempfile::Remover
+      pid: 5009
+      data: *1
+    - *2
+    - "/var/folders/tv/29p0ndzn2q96fvbc_5w89sf40000gp/T/RackMultipart20161101-5009-qwrmsd"
+    - 2
+    - :perm: 384
+  : *2
